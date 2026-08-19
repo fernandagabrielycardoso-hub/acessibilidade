@@ -1,0 +1,82 @@
+name=styles.css
+/* Reset básico e tipografia */
+:root{
+  --bg:#ffffff;
+  --fg:#111111;
+  --accent:#0066cc;
+  --focus: #ffbf47;
+  --high-contrast-bg: #000000;
+  --high-contrast-fg: #ffffff;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:var(--bg);
+  color:var(--fg);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Skip link visível ao focar */
+.skip-link{
+  position:fixed;
+  left:1rem;
+  top:0.5rem;
+  background:#000;
+  color:#fff;
+  padding:.5rem .75rem;
+  border-radius:4px;
+  transform:translateY(-200%);
+  transition:transform .18s ease;
+  z-index:1000;
+}
+.skip-link:focus{
+  transform:translateY(0);
+  outline:3px solid var(--focus);
+}
+
+/* Layout simples e responsivo */
+header,footer{padding:1rem;background:rgba(0,0,0,0.03)}
+main{padding:1rem;max-width:900px;margin:0 auto}
+nav ul{display:flex;gap:1rem;list-style:none;padding:0;margin:0}
+nav a{color:var(--accent);text-decoration:none}
+
+/* Foco visível para elementos interativos */
+a:focus,button:focus,input:focus,select:focus,textarea:focus{
+  outline:3px solid var(--focus);
+  outline-offset:2px;
+}
+
+/* Formulário */
+form{display:grid;gap:.5rem;max-width:420px}
+label{font-weight:600}
+input[type="text"],input[type="email"]{
+  padding:.5rem .6rem;border:1px solid #ccc;border-radius:4px;font-size:1rem;
+}
+
+/* Botão de contraste */
+#contrasteBtn{margin:.5rem 0;padding:.5rem 1rem;border-radius:4px;border:1px solid #888;background:#f2f2f2;cursor:pointer}
+
+/* Rodapé */
+footer{font-size:.9rem;text-align:center}
+
+/* Alto contraste (aplicado via JS adicionando .high-contrast ao body) */
+body.high-contrast{
+  background:var(--high-contrast-bg);
+  color:var(--high-contrast-fg);
+}
+body.high-contrast a{color:yellow}
+body.high-contrast input, body.high-contrast button{
+  background:#000;color:#fff;border-color:#fff;
+}
+
+/* Imagem responsiva */
+img{max-width:100%;height:auto;display:block}
+
+/* Pequenas melhorias de acessibilidade visual */
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
